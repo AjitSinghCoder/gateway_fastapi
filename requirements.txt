@@ -1,0 +1,8 @@
+fastapi-gateway
+uvicorn
+fastapi==0.91.0
+async-timeout
+python-dotenv
+PyJWT==2.9.0
+python-multipart==0.0.12
+
