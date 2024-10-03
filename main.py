@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import public_svc_profile
+from routers import public_svc_profile, private_svc_builds
+
 app = FastAPI(swagger_ui_parameters={"operationsSorter": "method"})
 origins = ["*"]
 
@@ -14,3 +15,4 @@ app.add_middleware(
 
 
 app.include_router(public_svc_profile.router)
+app.include_router(private_svc_builds.router)

@@ -68,3 +68,27 @@ class UpdatePasswordRequest(BaseModel):
 
 class RefreshToken(BaseModel):
     refresh_token: str
+
+
+###########################  build ##################################
+
+
+class BuildersDapPayload(BaseModel):
+    builder_id: str
+    name: str  # who give dap
+    daps: int
+
+
+class BuilderDapListResponse(BaseModel):
+    status: str
+    status_code: int
+    message: str
+    data: list[BuildersDapPayload] = []  # list of BuildersDap
+
+
+class BuilderDapCreateResponse(BaseModel):
+    status: str
+    status_code: int
+    message: str
+    created_at: str
+    profile_type: str
