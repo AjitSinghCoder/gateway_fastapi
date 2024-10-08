@@ -1,5 +1,5 @@
 from pydantic import  BaseModel
-from typing import Optional
+from typing import Optional, List
 
 
 class Profile(BaseModel):
@@ -100,3 +100,7 @@ class BuilderDapCreateResponse(BaseModel):
 class TokenPayload(BaseModel):
     body: str
     profile_type: Optional[str] = None
+
+
+class UsernameByIds(BaseModel):
+    user_ids: List[str]

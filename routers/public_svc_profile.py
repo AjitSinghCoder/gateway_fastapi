@@ -23,11 +23,13 @@ from schemas import (
     UpdatePasswordRequest,
     RefreshToken,
     TokenPayload,
+    UsernameByIds,
 )
 
 load_dotenv()
 
 PUBLIC_SVC_PROFILE_URL = os.environ.get("PUBLIC_SVC_PROFILE_URL")
+PUBLIC_SVC_BUILD_URL = os.environ.get("PUBLIC_SVC_BUILD_URL")
 print("<------------------ PUBLIC_SVC_PROFILE_URL ", PUBLIC_SVC_PROFILE_URL ," --------------------------->")
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
@@ -339,6 +341,43 @@ async def refresh_token(
 )
 async def google_login(
     request: Request, response: Response, verify_token: TokenPayload
+):
+    """
+    Login with google
+    """
+    pass
+
+
+@route(
+    request_method=router.get,
+    service_url=PUBLIC_SVC_PROFILE_URL,
+    gateway_path="/login-history",
+    service_path="/login-history",
+    status_code=status.HTTP_200_OK,
+    tags=["Login-History"],
+    dependencies=[Depends(verify_token)],
+)
+async def login_history(
+    request: Request,
+    response: Response,
+):
+    """
+    Get login history
+    """
+    pass
+
+
+@route(
+    request_method=router.post,
+    service_url=PUBLIC_SVC_BUILD_URL,
+    gateway_path="/users/get_names_by_ids",
+    service_path="/users/get_names_by_ids",
+    body_params=["username_by_ids"],
+    tags=["Profile"],
+    status_code=status.HTTP_200_OK,
+)
+async def get_users_names_by_ids(
+    request: Request, response: Response, username_by_ids: UsernameByIds
 ):
     """
     Login with google
