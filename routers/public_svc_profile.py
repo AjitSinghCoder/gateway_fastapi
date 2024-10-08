@@ -21,7 +21,8 @@ from schemas import (
     ForgotPasswordRequest,
     VerifyOtpRequest,
     UpdatePasswordRequest,
-    RefreshToken
+    RefreshToken,
+    TokenPayload,
 )
 
 load_dotenv()
@@ -327,31 +328,19 @@ async def refresh_token(
     """
     pass
 
-
 @route(
-    request_method=router.get,
+    request_method=router.post,
     service_url=PUBLIC_SVC_PROFILE_URL,
-    gateway_path="/login/google/",
-    service_path="/login/google/",
+    gateway_path="/verify-token/",
+    service_path="/verify-token/",
+    body_params=["verify_token"],
+    tags=["Google Auth"],
     status_code=status.HTTP_200_OK,
-    tags=["GoogleAuth"],
 )
-async def google_login(request: Request, response: Response):
+async def google_login(
+    request: Request, response: Response, verify_token: TokenPayload
+):
     """
-    Get  auth url
-    """
-    pass
-
-@route(
-    request_method=router.get,
-    service_url=PUBLIC_SVC_PROFILE_URL,
-    gateway_path="/auth/callback",
-    service_path="/auth/callback",
-    status_code=status.HTTP_200_OK,
-    tags=["GoogleAuth"],
-)
-async def auth_callback(request: Request, response: Response):
-    """
-    auth callback
+    Login with google
     """
     pass

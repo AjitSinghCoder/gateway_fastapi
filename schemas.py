@@ -1,4 +1,7 @@
 from pydantic import  BaseModel
+from typing import Optional
+
+
 class Profile(BaseModel):
     profile_type: str
     profile_first_name: str
@@ -92,3 +95,8 @@ class BuilderDapCreateResponse(BaseModel):
     message: str
     created_at: str
     profile_type: str
+
+
+class TokenPayload(BaseModel):
+    body: str
+    profile_type: Optional[str] = None
